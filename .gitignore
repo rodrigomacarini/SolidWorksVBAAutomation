@@ -1,0 +1,26 @@
+# SOLIDWORKS local and temporary files
+*.sldprt
+*.sldasm
+*.slddrw
+*.tmp
+*.bak
+~$*
+Thumbs.db
+.DS_Store
+
+# VBA editor and generated output
+*.dxf
+*.dwg
+*.pdf
+*.igs
+*.iges
+*.step
+*.stp
+*.log
+
+# IDE and environment state
+.vs/
+.vscode/
+*.pyc
+__pycache__/
+.venv/
