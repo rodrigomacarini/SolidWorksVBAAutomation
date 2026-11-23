@@ -6,7 +6,7 @@
 
 This SOLIDWORKS VBA macro automates a repetitive manufacturing handoff: it scans the active assembly, finds unique physical parts with sheet-metal Cut List items, exports each eligible flat pattern as a DXF, and names the output using information used by downstream laser-cutting programming.
 
-This package contains presentation copies of the supplied source. The original macro in the workspace was not modified.
+This package contains copies of the supplied source. The original macro in the workspace was not modified.
 
 ## Process and workflow
 
@@ -43,15 +43,9 @@ This package contains presentation copies of the supplied source. The original m
 4. Open the Immediate Window (`Ctrl+G` in the VBA editor), run `main`, and review `[VERSION]`, `[SUMMARY]`, `[DXF ERROR]`, `[PART RESULT]`, and close/restore diagnostics.
 5. Verify the generated DXFs and their names before using them for manufacturing.
 
-### Debugging prompt
+## Validation
 
-> Review this SOLIDWORKS VBA DXF export using the exact source marker, the anonymized assembly/configuration setup, and the complete Immediate Window output from `[VERSION]` through `[SUMMARY]`. Find the earliest failing step, distinguish API return values from file validation, and do not propose changing the filename contract or Cut List property keys without asking first.
-
-## Validation and process impact
-
-- **User-reported validation:** the user confirmed that marker `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` was tested in SOLIDWORKS 2025 and works. This is recorded as user-confirmed; this assistant did not independently run SOLIDWORKS.
-- No time-savings or error-reduction measurements were provided. The qualitative benefit is a repeatable assembly-to-DXF handoff with consistent manufacturing-oriented filenames and explicit export diagnostics.
-- To measure impact, time comparable manual and automated runs, record the number of unique parts/Cut List items, and compare rework or export errors across equivalent batches. Report the sample size and period; do not infer percentages from a single run.
+- **Reported validation:** marker `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` was tested in SOLIDWORKS 2025 and reported to work.
 
 ## Files in this package
 
@@ -66,9 +60,9 @@ This package contains presentation copies of the supplied source. The original m
 
 ## Objetivo
 
-Esta macro VBA para SOLIDWORKS automatiza uma etapa repetitiva de transferencia para fabricacao: percorre a montagem ativa, encontra pecas fisicas unicas com itens de chapa metalica na Cut List, exporta cada planificado elegivel em DXF e nomeia a saida com dados usados pela programacao posterior do corte a laser.
+Esta macro VBA para SOLIDWORKS percorre a montagem ativa, encontra pecas fisicas unicas com itens de chapa na Cut List, exporta cada planificado elegivel em DXF e nomeia a saida para uso na programacao de corte a laser.
 
-Este pacote contem copias de apresentacao da fonte fornecida. A macro original no workspace nao foi alterada.
+Este pacote contem copias da fonte fornecida. A macro original no workspace nao foi alterada.
 
 ## Processo e fluxo
 
@@ -105,15 +99,9 @@ Este pacote contem copias de apresentacao da fonte fornecida. A macro original n
 4. Abra a Immediate Window (`Ctrl+G` no editor VBA), execute `main` e confira `[VERSION]`, `[SUMMARY]`, `[DXF ERROR]`, `[PART RESULT]` e os diagnosticos de fechamento/restauracao.
 5. Verifique os DXFs gerados e seus nomes antes de usa-los na fabricacao.
 
-### Prompt de depuracao
+## Validacao
 
-> Revise esta exportacao DXF VBA do SOLIDWORKS usando o marcador exato da fonte, a montagem/configuracao de teste anonimizada e a saida completa da Immediate Window de `[VERSION]` ate `[SUMMARY]`. Encontre a primeira etapa que falhou, diferencie retorno da API da validacao do arquivo e nao proponha alterar o formato dos nomes nem as chaves da Cut List sem perguntar primeiro.
-
-## Validacao e impacto no processo
-
-- **Validacao relatada pelo usuario:** o usuario confirmou que o marcador `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` foi testado no SOLIDWORKS 2025 e funciona. O registro e relato confirmado pelo usuario; este assistente nao executou o SOLIDWORKS de forma independente.
-- Nao foram fornecidas medicoes de tempo economizado ou reducao de erros. O beneficio qualitativo e uma transferencia repetivel da montagem para DXF, com nomes consistentes para fabricacao e diagnostico explicito da exportacao.
-- Para medir impacto, cronometre execucoes manuais e automatizadas comparaveis, registre a quantidade de pecas unicas/itens da Cut List e compare retrabalho ou falhas em lotes equivalentes. Informe amostra e periodo; nao estime percentuais a partir de uma unica execucao.
+- **Validacao relatada:** o marcador `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` foi testado no SOLIDWORKS 2025 e funcionou.
 
 ## Arquivos deste pacote
 
