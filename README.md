@@ -4,18 +4,19 @@ This repository brings together practical SOLIDWORKS VBA macros and notes from t
 
 ## What you'll find
 
-- Automate repetitive engineering and manufacturing handoffs.
-- Integrate SOLIDWORKS VBA/COM APIs with document properties, assemblies, Cut Lists, flat patterns, and file export.
-- Add defensive validation and Immediate Window diagnostics.
-- Preserve native SOLIDWORKS documents and clearly communicate save/close behavior.
+- Automation for repetitive engineering and manufacturing handoffs.
+- Integration of SOLIDWORKS VBA/COM APIs with document properties, assemblies, Cut Lists, flat patterns, and file exports.
+- Defensive validation and diagnostics in the Immediate Window.
+- Guidance on preserving native SOLIDWORKS documents and clearly communicating save and close behavior.
 
 ## Projects
 
 | Project | Domain | Status | Evidence |
 |---|---|---|---|
 | [Assembly Sheet Metal DXF Exporter](AssemblySheetMetalDxfExporter/) | Assembly export automation | Bilingual package prepared | Static executable-code comparison passed; SOLIDWORKS test is user-reported |
+| [Assembly Drawing PDF Exporter](AssemblyDrawingPdfExporter/) | Assembly drawing delivery | Bilingual package prepared | Static executable-code comparison passed; current marker still needs SOLIDWORKS validation |
 
-Each macro has its own folder, named after the macro, with its source and supporting documentation.
+Each macro has its own professionally named folder, containing English/Portuguese source copies when applicable and supporting documentation.
 
 ## Repository structure
 
@@ -65,10 +66,10 @@ Remove confidential models, drawing numbers, customer names, network paths, inte
 
 ---
 
-# Portfolio de automacao VBA/SOLIDWORKS
+# Portfólio de automação VBA/SOLIDWORKS
 
-Este repositorio reune macros VBA para SOLIDWORKS e notas sobre seu desenvolvimento. A ideia e compartilhar solucoes uteis para tarefas recorrentes e registrar as decisoes tecnicas, limites e validacao de cada macro.
+Este repositório reúne macros VBA para SOLIDWORKS e notas sobre seu desenvolvimento. A ideia é compartilhar soluções úteis para tarefas recorrentes e registrar as decisões técnicas, os limites e a validação de cada macro.
 
-Cada macro fica em uma pasta com seu proprio nome e os arquivos relacionados.
+Cada macro fica em uma pasta com seu próprio nome e os arquivos relacionados.
 
 Remova dados confidenciais antes de distribuir os arquivos.

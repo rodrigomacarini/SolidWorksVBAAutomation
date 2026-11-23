@@ -56,56 +56,56 @@ This package contains copies of the supplied source. The original macro in the w
 
 ---
 
-# Versao em portugues
+# Versão em português
 
 ## Objetivo
 
-Esta macro VBA para SOLIDWORKS percorre a montagem ativa, encontra pecas fisicas unicas com itens de chapa na Cut List, exporta cada planificado elegivel em DXF e nomeia a saida para uso na programacao de corte a laser.
+Esta macro VBA para SOLIDWORKS percorre a montagem ativa, encontra peças físicas únicas com itens de chapa na Cut List, exporta cada planificado elegível em DXF e nomeia os arquivos de saída para uso na programação de corte a laser.
 
-Este pacote contem copias da fonte fornecida. A macro original no workspace nao foi alterada.
+Este pacote contém cópias da fonte fornecida. A macro original no workspace não foi alterada.
 
 ## Processo e fluxo
 
-1. Valida se ha uma montagem salva aberta no SOLIDWORKS.
-2. Enumera uma vez a arvore de componentes da montagem ativa.
-3. Ignora componentes suprimidos e seus descendentes, componentes virtuais, componentes sem caminho e documentos que nao sejam pecas. Consolida pecas fisicas pelo caminho completo.
-4. Abre silenciosamente a peca referenciada quando necessario, ativa o documento e seleciona a configuracao referenciada. Se o mesmo arquivo aparecer em configuracoes diferentes, exporta somente a primeira configuracao encontrada e registra a diferenca.
-5. Le propriedades e quantidades da Cut List existente. A macro nao chama `UpdateCutList`; atualize a Cut List manualmente antes da execucao se houve alteracoes no modelo.
-6. Associa cada corpo de chapa ao `FlatPattern` pela relacao usada neste projeto: `FlatPattern -> GetDefinition -> FixedFace2 -> GetBody`. Valida a feature selecionada e chama `IPartDoc.ExportToDWG2`.
-7. So contabiliza sucesso quando a API retorna sucesso e o DXF existe com tamanho maior que zero. Reativa a montagem principal e informa os totais na Immediate Window e em uma mensagem final.
+1. Valida se há uma montagem salva aberta no SOLIDWORKS.
+2. Enumera uma vez a árvore de componentes da montagem ativa.
+3. Ignora componentes suprimidos e seus descendentes, componentes virtuais, componentes sem caminho e documentos que não sejam peças. Consolida as peças físicas pelo caminho completo.
+4. Abre silenciosamente a peça referenciada, se necessário, ativa o documento e seleciona a configuração correspondente. Se o mesmo arquivo aparecer em configurações diferentes, exporta somente a primeira configuração encontrada e registra essa diferença.
+5. Lê as propriedades e quantidades da Cut List existente. A macro não chama `UpdateCutList`; atualize a Cut List manualmente antes de executar a macro se o modelo tiver sido alterado.
+6. Associa cada corpo de chapa ao `FlatPattern` pela relação usada neste projeto: `FlatPattern -> GetDefinition -> FixedFace2 -> GetBody`. Valida o recurso selecionado e chama `IPartDoc.ExportToDWG2`.
+7. Só contabiliza uma exportação como bem-sucedida quando a API retorna sucesso e o DXF existe com tamanho maior que zero. Reativa a montagem principal e informa os totais na Immediate Window e em uma mensagem final.
 
-## Entradas e saidas
+## Entradas e saídas
 
-- **Entrada:** montagem `.SLDASM` salva, pecas `.SLDPRT` referenciadas disponiveis e Cut Lists preparadas.
-- **Saida:** arquivos DXF na pasta da montagem principal.
-- **Formato do nome:** `Material #Espessura NumeroDesenho-IndiceCutList QuantidadeTotalpçs.dxf` (a espessura aparece quando disponivel). O sufixo legado `pçs` e a estrutura do nome sao preservados intencionalmente porque etapas posteriores da programacao do laser podem depender deles.
-- Os nomes das propriedades da Cut List e os termos de deteccao permanecem inalterados por compatibilidade com os documentos SOLIDWORKS existentes. Sao dados/entradas da API, nao texto de interface.
+- **Entrada:** uma montagem `.SLDASM` salva, com as peças `.SLDPRT` referenciadas disponíveis e as Cut Lists preparadas.
+- **Saída:** arquivos DXF na pasta da montagem principal.
+- **Formato do nome:** `Material #Espessura NumeroDesenho-IndiceCutList QuantidadeTotalpçs.dxf` (a espessura é incluída quando disponível). O sufixo legado `pçs` e a estrutura do nome são preservados intencionalmente, pois etapas posteriores da programação do laser podem depender deles.
+- Os nomes das propriedades da Cut List e os termos de detecção permanecem inalterados por compatibilidade com os documentos SOLIDWORKS existentes. Eles são dados de entrada da API, não texto de interface.
 
 ## Confiabilidade, limites e aviso operacional
 
-- O codigo valida a quantidade e a identidade do objeto selecionado antes da exportacao, depois verifica o retorno da API e o tamanho do arquivo.
-- Instancias repetidas do mesmo arquivo fisico sao consolidadas. Para configuracoes diferentes do mesmo arquivo, processa somente a primeira configuracao encontrada.
-- Se a quantidade da configuracao estiver ausente ou invalida, usa `1`; se a quantidade da Cut List estiver ausente ou invalida, usa a quantidade de corpos e depois `1`. Confira esses valores se os totais parecerem incorretos.
-- A macro nao salva documentos nativos do SOLIDWORKS e nao atualiza Cut Lists automaticamente.
-- **Importante:** depois de cada tentativa de processamento, a macro fecha cada documento de peca processado sem salvar, inclusive pecas que ja estavam abertas antes da execucao. Alteracoes nao salvas nessas pecas podem ser descartadas. A montagem principal permanece aberta e e reativada. Esse comportamento existente nao foi alterado neste pacote.
-- O codigo nao apresenta uma previa explicita de DXFs com o mesmo nome antes da exportacao. Verifique a pasta de destino e proteja arquivos existentes antes de executar.
-- Os diagnosticos sao enviados para a Immediate Window; a macro nao cria um arquivo de log persistente. O texto de `Err.Description` depende do ambiente local do SOLIDWORKS/VBA.
+- O código valida a quantidade e a identidade do objeto selecionado antes da exportação; em seguida, verifica o retorno da API e o tamanho do arquivo.
+- Instâncias repetidas do mesmo arquivo físico são consolidadas. Se o mesmo arquivo for referenciado em configurações diferentes, somente a primeira configuração encontrada será processada.
+- Se a quantidade da configuração estiver ausente ou for inválida, a macro usa `1`. Se a quantidade da Cut List estiver ausente ou for inválida, usa a quantidade de corpos e, depois, `1`. Confira esses valores se os totais parecerem incorretos.
+- A macro não salva documentos nativos do SOLIDWORKS nem atualiza Cut Lists automaticamente.
+- **Importante:** após cada tentativa de processamento, a macro fecha sem salvar cada documento de peça processado, inclusive os que já estavam abertos antes da execução. Alterações não salvas nesses documentos podem ser descartadas. A montagem principal permanece aberta e é reativada. Esse comportamento preexistente não foi alterado neste pacote.
+- O código não exibe uma prévia explícita dos DXFs com nomes repetidos antes da exportação. Verifique a pasta de destino e proteja os arquivos existentes antes de executar a macro.
+- Os diagnósticos são enviados para a Immediate Window; a macro não cria um arquivo de log persistente. O texto de `Err.Description` depende do ambiente local do SOLIDWORKS/VBA.
 
-## Execucao e depuracao
+## Execução e depuração
 
-1. Trabalhe em uma copia da montagem e confira a pasta de destino.
-2. Abra o projeto VBA correto do SOLIDWORKS. Para atualizar um modulo, copie o texto completo da fonte e cole no modulo padrao correto; nao use **Import File** neste workspace, pois ja causou corrupcao de caracteres.
-3. Compile no editor VBA e confirme o marcador `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` no log.
-4. Abra a Immediate Window (`Ctrl+G` no editor VBA), execute `main` e confira `[VERSION]`, `[SUMMARY]`, `[DXF ERROR]`, `[PART RESULT]` e os diagnosticos de fechamento/restauracao.
-5. Verifique os DXFs gerados e seus nomes antes de usa-los na fabricacao.
+1. Trabalhe em uma cópia da montagem e confira a pasta de destino.
+2. Abra o projeto VBA correto do SOLIDWORKS. Para atualizar um módulo, copie o texto completo da fonte e cole-o no módulo padrão correto. Não use **Import File** neste workspace, pois esse recurso já causou corrupção de caracteres.
+3. Compile no editor VBA e confirme no log o marcador `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL`.
+4. Abra a Immediate Window (`Ctrl+G` no editor VBA), execute `main` e confira `[VERSION]`, `[SUMMARY]`, `[DXF ERROR]`, `[PART RESULT]` e os diagnósticos de fechamento e restauração.
+5. Verifique os DXFs gerados e seus nomes antes de usá-los na fabricação.
 
-## Validacao
+## Validação
 
-- **Validacao relatada:** o marcador `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` foi testado no SOLIDWORKS 2025 e funcionou.
+- **Validação relatada:** o marcador `20261106-02-DXF-MONTAGEM-PASTA-PRINCIPAL` foi testado no SOLIDWORKS 2025 e, segundo o relato, funcionou.
 
 ## Arquivos deste pacote
 
-- [AssemblySheetMetalDxfExporter.bas](AssemblySheetMetalDxfExporter.bas) — comentarios, diagnosticos e nomes internos em ingles.
-- [AssemblySheetMetalDxfExporter.pt-BR.bas](AssemblySheetMetalDxfExporter.pt-BR.bas) — comentarios e diagnosticos em portugues.
-- [CONTINUACAO.md](CONTINUACAO.md) — resumo curto para continuar o trabalho deste pacote.
-- Nao ha `.swp`: nenhum foi fornecido ou atualizado. As copias `.bas` e qualquer projeto `.swp` do SOLIDWORKS sao artefatos distintos.
+- [AssemblySheetMetalDxfExporter.bas](AssemblySheetMetalDxfExporter.bas) — comentários, diagnósticos e nomes internos em inglês.
+- [AssemblySheetMetalDxfExporter.pt-BR.bas](AssemblySheetMetalDxfExporter.pt-BR.bas) — comentários e diagnósticos em português.
+- [CONTINUACAO.md](CONTINUACAO.md) — resumo curto para dar continuidade ao trabalho neste pacote.
+- Não há arquivo `.swp`: nenhum foi fornecido ou atualizado. As cópias `.bas` e qualquer projeto `.swp` do SOLIDWORKS são artefatos distintos.
