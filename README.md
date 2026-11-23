@@ -14,7 +14,7 @@ This repository brings together practical SOLIDWORKS VBA macros and notes from t
 | Project | Domain | Status | Evidence |
 |---|---|---|---|
 | [Assembly Sheet Metal DXF Exporter](AssemblySheetMetalDxfExporter/) | Assembly export automation | Bilingual package prepared | Static executable-code comparison passed; SOLIDWORKS test is user-reported |
-| [Assembly Drawing PDF Exporter](AssemblyDrawingPdfExporter/) | Assembly drawing delivery | Bilingual package prepared | Static executable-code comparison passed; current marker still needs SOLIDWORKS validation |
+| [Assembly Drawing PDF Exporter](AssemblyDrawingPdfExporter/) | Assembly drawing delivery | Bilingual package prepared | User reports successful test in SOLIDWORKS 2025 (2026-11-23); marker and scenario unspecified |
 
 Each macro has its own professionally named folder, containing English/Portuguese source copies when applicable and supporting documentation.
 

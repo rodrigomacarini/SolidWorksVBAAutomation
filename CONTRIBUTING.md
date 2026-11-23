@@ -23,6 +23,7 @@ Do not fabricate or claim synchronization with a `.swp` file.
 - Preserve functional VBA logic and compatibility-critical SOLIDWORKS property names.
 - Add comments that explain purpose, API assumptions, state changes, validation, and failure behavior.
 - Use ASCII in newly created VBA modules when practical.
+- The ASCII convention applies only to VBA source code, not Markdown. Portuguese READMEs and other documentation must retain correct accents, spelling, and punctuation.
 - Preserve `ChrW(...)` for SOLIDWORKS property names that require special characters.
 - Keep the source marker/version in the macro and documentation.
 - Do not use VBA `Dir$` for recursive or nested folder traversal; prefer FSO, collections, or explicit traversal state.
